@@ -1,4 +1,4 @@
-/* MessagePage.css */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -11,10 +11,11 @@ body {
   color: #333;
 }
 
+/* Container */
 .message-page {
-  width: 1200px;
-  margin: 0 auto;
-  padding: 24px;
+  max-width: 1200px;
+  /* margin: 0 auto; */
+  padding: 0;
   background: linear-gradient(to bottom right, #e6f0ff, #e0e7ff);
   min-height: 100vh;
 }
@@ -28,8 +29,9 @@ body {
   animation: fadeIn 1s ease-in-out;
 }
 
+/* Message List */
 .messages-list {
-  background-color: #748d855d;
+  background-color: rgba(116, 141, 133, 0.36);
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 24px;
@@ -38,41 +40,37 @@ body {
   overflow-y: auto;
 }
 
+/* Messages */
 .msg {
   padding: 12px;
   margin-bottom: 12px;
   border-radius: 18px;
   max-width: 70%;
   word-wrap: break-word;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .msg.sent {
-  width: calc(22.333% - 16px);
   background-color: #ffffff;
-  color: #ffffff;
+  color: #372222;
   margin-left: auto;
   border-left: 3px solid #72baee;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  transform: translateY(0);
+}
 
-  animation: fadeIn 0.5s ease-in-out;
-
-  &:hover {
-    transform: translateY(-4px);
-    animation: none;
-  }
+.msg.sent:hover {
+  transform: translateY(-4px);
 }
 
 .msg.received {
   background-color: #f9fafb;
-  color: #2c3e50;
+  color: #9aa8b5;
   margin-right: auto;
   border-left: 6px solid #a5b4fc;
 }
 
 .msg p {
-  color: #2c3e50;
   font-size: 16px;
   margin-bottom: 4px;
 }
@@ -83,6 +81,7 @@ body {
   opacity: 0.8;
 }
 
+/* Input */
 .message-input {
   display: flex;
   gap: 12px;
@@ -98,8 +97,6 @@ body {
   padding: 12px;
   border-radius: 9999px;
   border: 2px solid #a5b4fc;
-  background-color: #ffffff;
-  color: #374151;
   font-size: 16px;
   outline: none;
   transition: all 0.3s ease;
@@ -131,19 +128,24 @@ body {
   transform: scale(1.05);
 }
 
+/* Appointments */
 .message-page h3 {
   font-size: 20px;
   color: #2c3e50;
   margin-bottom: 10px;
 }
 
+.appointment-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .appt-item {
-  display: inline-block;
-  width: calc(33.333% - 16px);
+  flex: 1 1 calc(33.333% - 16px);
   background: #ffffff;
   border-radius: 8px;
   padding: 16px;
-  margin: 8px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   border-left: 6px solid #ccc;
   transition: transform 0.3s ease;
@@ -173,7 +175,28 @@ body {
 
 .appt-item p strong {
   font-weight: bold;
-  color: #2c3e50;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 .appt-item.pending p:last-child {
@@ -181,50 +204,34 @@ body {
   animation: pulse 1.5s infinite;
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
+/* Responsive */
+@media (max-width: 768px) {
+  .msg {
+    max-width: 85%;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-@keyframes pulse {
-  0% {
-    opacity: 1;
+  .appointment-container {
+    flex-direction: column;
   }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 
-/* Responsive adjustments */
-@media (max-width: 640px) {
-  .message-page {
-    padding: 16px;
+  .appt-item {
+    flex: 1 1 100%;
   }
 
   .message-page h2 {
     font-size: 24px;
   }
+}
 
-  .message-page h3 {
-    font-size: 18px;
+@media (max-width: 480px) {
+  .message-input {
+    flex-direction: column;
   }
 
-  .messages-list {
-    padding: 12px;
-  }
-
-  .msg {
-    max-width: 85%;
+  .message-input button {
+    width: 100%;
     padding: 10px;
+    font-size: 14px;
   }
 
   .msg p {
@@ -234,36 +241,4 @@ body {
   .msg small {
     font-size: 10px;
   }
-
-  .message-input {
-    flex-direction: column;
-    padding: 10px;
-  }
-
-  .message-input input {
-    padding: 10px;
-    font-size: 14px;
-  }
-
-  .message-input button {
-    padding: 10px;
-    font-size: 14px;
-    width: 100%;
-  }
-
-  .appt-item {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-  }
-
-  .appt-item p {
-    font-size: 13px;
-  }
-}
-
-.appointment-container {
-  display: flex;
-  height: 100%;
-  gap: 12px;
 }
