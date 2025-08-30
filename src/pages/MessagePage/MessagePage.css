@@ -1,0 +1,269 @@
+/* MessagePage.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+.message-page {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  background: linear-gradient(to bottom right, #e6f0ff, #e0e7ff);
+  min-height: 100vh;
+}
+
+.message-page h2 {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  color: #4f46e5;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.messages-list {
+  background-color: #748d855d;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.msg {
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 18px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.msg.sent {
+  width: calc(22.333% - 16px);
+  background-color: #ffffff;
+  color: #ffffff;
+  margin-left: auto;
+  border-left: 3px solid #72baee;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  transform: translateY(0);
+
+  animation: fadeIn 0.5s ease-in-out;
+
+  &:hover {
+    transform: translateY(-4px);
+    animation: none;
+  }
+}
+
+.msg.received {
+  background-color: #f9fafb;
+  color: #2c3e50;
+  margin-right: auto;
+  border-left: 6px solid #a5b4fc;
+}
+
+.msg p {
+  color: #2c3e50;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.msg small {
+  font-size: 12px;
+  color: #6b7280;
+  opacity: 0.8;
+}
+
+.message-input {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message-input input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 9999px;
+  border: 2px solid #a5b4fc;
+  background-color: #ffffff;
+  color: #374151;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.message-input input::placeholder {
+  color: #9ca3af;
+}
+
+.message-input input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transform: scale(1.02);
+}
+
+.message-input button {
+  background-color: #4f46e5;
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.message-input button:hover {
+  background-color: #4338ca;
+  transform: scale(1.05);
+}
+
+.message-page h3 {
+  font-size: 20px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.appt-item {
+  display: inline-block;
+  width: calc(33.333% - 16px);
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  border-left: 6px solid #ccc;
+  transition: transform 0.3s ease;
+}
+
+.appt-item:hover {
+  transform: translateY(-4px);
+}
+
+.appt-item.cancelled {
+  border-left-color: #e74c3c;
+}
+
+.appt-item.approved {
+  border-left-color: #2ecc71;
+}
+
+.appt-item.pending {
+  border-left-color: #f1c40f;
+}
+
+.appt-item p {
+  font-size: 14px;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.appt-item p strong {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.appt-item.pending p:last-child {
+  font-weight: 500;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .message-page {
+    padding: 16px;
+  }
+
+  .message-page h2 {
+    font-size: 24px;
+  }
+
+  .message-page h3 {
+    font-size: 18px;
+  }
+
+  .messages-list {
+    padding: 12px;
+  }
+
+  .msg {
+    max-width: 85%;
+    padding: 10px;
+  }
+
+  .msg p {
+    font-size: 14px;
+  }
+
+  .msg small {
+    font-size: 10px;
+  }
+
+  .message-input {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .message-input input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .message-input button {
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .appt-item {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+  }
+
+  .appt-item p {
+    font-size: 13px;
+  }
+}
+
+.appointment-container {
+  display: flex;
+  height: 100%;
+  gap: 12px;
+}
